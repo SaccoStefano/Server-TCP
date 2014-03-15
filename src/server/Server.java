@@ -7,7 +7,7 @@ import java.util.*;
 
 public class Server {
 
-    public static void main(String[] args) {
+    public static void main(String[] args)throws Exception{
        
         int port = 2000;
         
@@ -15,14 +15,10 @@ public class Server {
         Socket connection;
        
         System.out.println("Apertura porta in corso");
-        
-        try{
-            sSocket = new ServerSocket(port);
-            
+           
+            sSocket = new ServerSocket(port); 
             while(true){         
                 new EchoThread(sSocket.accept(),port).start();
-            }    
-       }catch(Exception e){}         
-        
+            }        
     }
 }

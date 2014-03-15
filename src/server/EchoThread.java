@@ -27,12 +27,13 @@ public class EchoThread extends Thread{
         System.out.println("Server in ascolto sulla porta "+ porta +"\n");
                 
                 connection = s;
-                inSocket = connection.getInputStream();
-                streamIn= new Scanner(inSocket);               
+                //inSocket = connection.getInputStream();
+                //streamIn= new Scanner(inSocket);  
+                streamIn= new Scanner(connection.getInputStream());   
                 String aux = streamIn.nextLine();
                 String richiesta="";
                 
-                if(aux.equals("x")){
+                if(aux.equals("maiuscole: on")){
                     richiesta = streamIn.nextLine();
                     richiesta = richiesta.toUpperCase();
                 }
@@ -40,8 +41,9 @@ public class EchoThread extends Thread{
                     richiesta = streamIn.nextLine(); 
                 }
                
-                outSocket = connection.getOutputStream();
-                streamOut= new PrintWriter(outSocket);
+                //outSocket = connection.getOutputStream();
+                //streamOut= new PrintWriter(outSocket);
+                streamOut= new PrintWriter(connection.getOutputStream());
                 System.out.println("Connessione stabilita e richiesta");                
                 streamOut.println(richiesta);
                 streamOut.close();                 
